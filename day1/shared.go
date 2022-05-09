@@ -5,12 +5,11 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"os"
 	"strconv"
 )
 
-func Run(input io.Reader) int {
-	bufReader := bufio.NewReader(input)
+func readInput(reader io.Reader) []int {
+	bufReader := bufio.NewReader(reader)
 	var numbers []int
 	for {
 		line, _, err := bufReader.ReadLine()
@@ -26,16 +25,6 @@ func Run(input io.Reader) int {
 		}
 		numbers = append(numbers, number)
 	}
-	fmt.Fprintln(os.Stderr, "Done reading lines")
-
-	previous := 0
-	increaseCount := -1
-	for _, number := range numbers {
-		if number > previous {
-			increaseCount++
-		}
-		previous = number
-	}
-
-	return increaseCount
+	fmt.Println("Done reading input!")
+	return numbers
 }
